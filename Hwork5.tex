@@ -1,0 +1,108 @@
+\documentclass[11pt, psfig]{article}
+\setlength{\topsep}{0pt}
+\setlength{\topmargin}{0cm}
+\setlength{\headheight}{0cm}
+\setlength{\headsep}{0cm}
+\setlength{\footskip}{0cm}
+\setlength{\oddsidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{9in}
+\setlength{\parskip}{3ex}
+\setlength{\parindent}{0em}
+
+\begin{document}
+
+%\vspace{-.5in}
+
+
+{\Large CSCI 201 -- Computer Science 1}
+
+
+
+{\bf Homework 5:  \ \ \ \   Comparing algorithms for computing the square root.}\\
+{\bf Due on Monday February 21}\\
+{\bf Objectives.} {The objectives of this assignment are: \\ 1. Learn how to track the number of operations evaluated when a program runs.\\ 2. Learn to design a converging loop to compute better approximations. \\
+3. Apply a method to estimate the efficiency of two different converging processes.} 
+
+{\bf IMPORTANT} \\{ 
+The sample code for this assignment is available in {\tt CourseInfo/TriangleANDSqrt/sqrtTest.cpp} in {\tt CourseFiles}.}
+
+In class we studied two approaches that can be used to 
+estimate the square root of a number.  
+The two approaches for the square root are the {\em 
+Divide-and-conquer} and {\em Newton's method.} In both cases, we have a 
+pre-defined constant {\tt eps} which is used to check the goodness 
+of the guess. The loop exits when the absolute value of the 
+difference between the input number and the square of the guess is 
+less than {\tt eps}.  
+
+ 
+{\bf Question 1.} Newton's method works by starting with an initial guess; we'll use $(num+1)/2$ as the initial guess.
+For each iteration,  the {\tt new guess} is computed as 
+$(oldGuess - \frac{oldGuess^2-num}{2*oldGuess})$. List the sequence of operations 
+that will be performed when we use this approach, and identify the repetition and 
+the exit condition.
+
+{\bf Question 2.} Construct a flowchart for the Newton's method using Raptor.
+
+
+{\bf Question 3.}  Write a {\tt C++ } program that implements your
+flowchart. The program must count the number of 
+divisions and multiplications that the loop performed. Compile and test in a script session.
+
+{\bf Comparing the   two methods.}  When comparing 
+two different approaches, it is important that we have a common framework.
+In the realm of computing this is done by creating a ``test-suite'' on 
+which both the approaches are applied. The test-suite defines the data set 
+and all the parameters needed for the problem. In this case our 
+data set is the numbers for which we compute the square root; the additional 
+parameter is the amount of accuracy needed, which is specified by the 
+value of {\tt eps.} Our process is as follows: {\em For each value of eps
+run the program on all the numbers in the data set and note  the sum of the
+number of multiplications and divisions in each case.} This process is carried out  for 
+both programs and the results are noted in 2 tables.
+
+{\bf Step 1.}
+ {\em Defining the test suite.} We will use the ten
+input values starting from $0.2$, increasing by $10\%$ each time.
+ The {\tt eps} values are 
+$0.1,0.05, 0.02, 0.01, 0.005, 0.002, 0.001, 0.0005, 0.0002$.
+
+{\bf Step 2.} {\em Collecting results.} Construct a table with one row for each data value 
+and one column for each {\tt eps} value. We will have two such tables, 
+one for divide-and-conquer and one for Newton's method. The table will 
+be filled by running the program and recording the number of multiplications and divisions
+of the loop. For instance, the  entry in the Newton 
+table corresponding to data value $0.2$ and {\tt eps} value $0.002$ will 
+be the number of  multiplications and divisions performed by Newton's method to find the 
+square root of $0.2$ with {\tt eps} set to $0.002$. {\bf For each column, 
+compute the average.}
+
+{\bf Step 3.} {\em Comparing the results.}  Compare the data from the two tables from two 
+viewpoints:\\
+{\em The total number of operations.} Which method do you think is performing fewer operations? Explain.\\
+{\em The scalability of the algorithm.} {\bf Scalability } refers to how well the algorithm {\em scales up}, i.e.,
+how does the amount of resources used (in this case, the number of operations) increase with 
+increased requirement (in this case, greater accuracy)?.  Scalability is usually represented by a graph, that plots the resources used against the requirements. Can you think of a way of doing that?
+
+
+ 
+ 
+
+ 
+{\bf What to upload on Github.} Create a folder named Hwork5 within your Github assignment and upload/create the following: \\
+\begin{enumerate}
+
+\item Answer to Question 1.
+
+\item Flowchart from Question 2.
+
+\item Script file and {\tt .cpp} file from Question 3.
+
+\item The table of results from Step 2.
+
+
+\item Answers to questions in Step 3.
+
+\end{enumerate}
+\end{document}
